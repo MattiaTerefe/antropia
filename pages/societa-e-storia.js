@@ -3,7 +3,7 @@ import Postlist from "../public/components/postlist.js"
 import {useState} from "react"
 
 
-export default SocietaStoria({posts}) {
+export default function SocietaStoria({posts}) {
   const [Page, setPage] = useState(0)
 const next = () => {
   if (Page < posts.length / 10){
