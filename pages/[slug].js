@@ -33,24 +33,9 @@ fallback: false,
 }
 
 export default function Post({post, categories}){
-
-    export default function Home({posts, categories}) {
-        const [Page, setPage] = useState(0)
-      const next = () => {
-        if (Page < posts.length / 10){
-        setPage(Page+1)
-      }
-      }
-      const prev = () => {
-        if (Page > 0){
-        setPage(Page-1)
-      }
-      }
-      
-      let viewed = posts.slice(0 + 10 * Page, 10 + 10* Page)
     
     return( <>
-    <Header cats={categories} posts={viewed}/>
+    <Header cats={categories} current={post.title.rendered}/>
        <h1>{ReactHtmlParser(post.title.rendered)}</h1>
        <p>{ReactHtmlParser(post.content.rendered)}</p>
        <button><a href="/">HOMEPAGE</a></button>

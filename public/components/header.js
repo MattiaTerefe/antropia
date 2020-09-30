@@ -6,18 +6,19 @@ import {ButtonGroup} from "react-bootstrap";
 import Link from "next/link";
 
 export default function Header(props) {
-const catButtons = props.cats.map((el)=><button><a href={"/categorie/" + el.slug}>{el.name}</a></button>)
+const catButtons = props.cats.map((el)=><a href={"/categorie/" + el.slug} style={{margin: "1em", color: "red",}}>{el.name}</a>)
   return (<>
   <Jumbotron fluid style={{backgroundColor: "silver", paddingBottom: "5px"}}>
   <Container ><div style={{marginLeft: "3%",}}>
-    <h1>ANTROPIA</h1>
+  <h1>ANTROPIA : {props.current}</h1>
     <p>
-     <Link href="/"><a>Home Page</a></Link> 
+     <Link href="/"><a style={{color: "blue",}}>Vai a Home Page</a></Link> 
     </p>
     </div>
   </Container>
 </Jumbotron>
-{catButtons}
+<br/>
+<div style={{textAlign: "center",}}>{catButtons}</div>
 
 </>
 )

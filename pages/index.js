@@ -18,7 +18,7 @@ const prev = () => {
 
 let viewed = posts.slice(0 + 10 * Page, 10 + 10* Page)
   return (<>
-  <Header cats={categories} />
+  <Header cats={categories} current={"HOME"}/>
   <Postlist posts={viewed} prev={prev} next={next}/></>
 )
 
