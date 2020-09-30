@@ -7,7 +7,7 @@ return (
 
 <p>{ReactHtmlParser(props.estratto)}</p>
 
-<a href={"/" + props.slug}>LEGGI L'ARTICOLO</a>
+<button onClick={()=>console.log(props.slug)}><a href={"/" + props.slug}>{props.slug}</a></button>
 
 </>
 )
