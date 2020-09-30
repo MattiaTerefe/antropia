@@ -25,7 +25,7 @@ export default function Header(props) {
 <Button variant="secondary"><Link href="/ambiente"><a>Ambiente</a></Link></Button>
 
 
-</ButtonGroup>
+</ButtonGroup> 
 </>
 )
 

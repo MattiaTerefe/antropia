@@ -43,14 +43,14 @@ export async function getStaticProps(){
    return allElements;
    }
 
-//let categories = await getData("categories")
+let categories = await getData("categories")
 let posts = await  getData("posts")
 //let pages = await  getData("pages")
 //let users = await getData("users")
 //let tags = await getData("tags")
 
   return {props: {
-    //categories: categories,
+    categories: categories,
    posts: posts,
    //pages: pages,
    //users: users, 
