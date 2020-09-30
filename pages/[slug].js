@@ -34,6 +34,7 @@ fallback: false,
 
 export default function post({post}){
     return( <>
+    <Header/>
        <h1>{ReactHtmlParser(post.title.rendered)}</h1>
        <p>{ReactHtmlParser(post.content.rendered)}</p>
        <button><a href="/">HOMEPAGE</a></button>
