@@ -1,5 +1,7 @@
-import Header from "../public/components/header.js"
+import Header from "../../public/components/header.js"
 import ReactHtmlParser from "react-html-parser"
+import Postlist from "../../public/components/postlist.js"
+import {useState} from "react"
 
 export async function getStaticPaths() {
 
@@ -17,27 +19,38 @@ export async function getStaticPaths() {
         return allElements;
         }
      
-        let posts = await  getData("posts")
+        let categories = await  getData("categories")
 
 
 return {
 
-paths: posts.map((el)=>{
+paths: categories.map((el)=>{
     return {
         params: {
-            slug: el.slug,
+            cat: el.slug,
         },
 }}),
 fallback: false,
 }
 }
 
-export default function Post({post}){
+export default function Cat({posts, category, categories}){
+
+    const [Page, setPage] = useState(0)
+    const next = () => {
+      if (Page < posts.length / 10){
+      setPage(Page+1)
+    }
+    }
+    const prev = () => {
+      if (Page > 0){
+      setPage(Page-1)
+    }
+    }
+
     return( <>
-    <Header/>
-       <h1>{ReactHtmlParser(post.title.rendered)}</h1>
-       <p>{ReactHtmlParser(post.content.rendered)}</p>
-       <button><a href="/">HOMEPAGE</a></button>
+    <Header cats={categories}/>
+  <Postlist posts={posts.filter((el)=>el.categories[0] == category.id)} next={next} prev={prev} />
        </>
     )
 }
@@ -59,15 +72,15 @@ export async function getStaticProps({params}){
      }
   
      let posts = await  getData("posts")
-  //let categories = await getData("categories")
+  let categories = await getData("categories")
   //let pages = await  getData("pages")
   //let users = await getData("users")
   //let tags = await getData("tags")
   
     return {props: {
-      //categories: categories,
+    categories: categories,
      posts: posts,
-     post: posts.find((el)=>el.slug == params.slug),
+     category: categories.find((el)=>el.slug == params.cat),
      //pages: pages,
      //users: users, 
     }}
