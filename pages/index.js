@@ -3,7 +3,7 @@ import Postlist from "../public/components/postlist.js"
 import {useState} from "react"
 
 
-export default function Home({posts}) {
+export default function Home({posts, categories}) {
   const [Page, setPage] = useState(0)
 const next = () => {
   if (Page < posts.length / 10){
@@ -18,7 +18,7 @@ const prev = () => {
 
 let viewed = posts.slice(0 + 10 * Page, 10 + 10* Page)
   return (<>
-  <Header/>
+  <Header cats={categories} />
   <Postlist posts={viewed} prev={prev} next={next}/></>
 )
 
