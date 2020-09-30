@@ -36,10 +36,10 @@ export default function Post({post, categories}){
     
     return( <>
     <Header cats={categories} current={post.title.rendered}/>
-       <h1>{ReactHtmlParser(post.title.rendered)}</h1>
+      <div style={{margin: "3em",}}> <h1>{ReactHtmlParser(post.title.rendered)}</h1>
        <p>{ReactHtmlParser(post.content.rendered)}</p>
        <button><a href="/">HOMEPAGE</a></button>
-       </>
+       </div></>
     )
 }
 
