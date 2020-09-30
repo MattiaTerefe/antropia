@@ -6,11 +6,7 @@ import {ButtonGroup} from "react-bootstrap";
 import Link from "next/link";
 
 export default function Header(props) {
-const catButtons = props.cats.map((el)=>{
-return(
-<button><a href={"/" + props.cats.slug}>{props.cats.name}</a></button>
-)}
-)
+const catButtons = props.cats.map((el)=><button><a href={"/" + el.slug}>{el.name}</a></button>)
   return (<>
   <Jumbotron fluid style={{backgroundColor: "silver", paddingBottom: "5px"}}>
   <Container ><div style={{marginLeft: "3%",}}>
