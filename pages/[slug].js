@@ -32,7 +32,7 @@ fallback: false,
 }
 }
 
-export default function Post({post}){
+export default function Post({post, categories}){
     return( <>
     <Header cats={categories}/>
        <h1>{ReactHtmlParser(post.title.rendered)}</h1>
@@ -59,13 +59,13 @@ export async function getStaticProps({params}){
      }
   
      let posts = await  getData("posts")
-  //let categories = await getData("categories")
+  let categories = await getData("categories")
   //let pages = await  getData("pages")
   //let users = await getData("users")
   //let tags = await getData("tags")
   
     return {props: {
-      //categories: categories,
+      categories: categories,
      posts: posts,
      post: posts.find((el)=>el.slug == params.slug),
      //pages: pages,
