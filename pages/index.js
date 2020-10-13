@@ -2,8 +2,9 @@ import Header from "../public/components/header.js"
 import Postlist from "../public/components/postlist.js"
 import {useState} from "react"
 import {Categories} from "../public/components/categories.js"
+import {Pages} from "../public/components/pages.js"
 
-export default function Home({posts, categories}) {
+export default function Home({posts, categories, pages}) {
   const [Page, setPage] = useState(0)
 const next = () => {
   if (Page < posts.length / 10){
@@ -23,6 +24,7 @@ let viewed = posts.slice(0 + 10 * Page, 10 + 10* Page)
     <div className="row">
     <div className="col-2">
   <Categories cats={categories}/>
+  <Pages pages={pages}/>
   </div>
   <div className="col-9 offset-1">
   <Postlist posts={viewed} prev={prev} next={next}/>
@@ -55,14 +57,14 @@ export async function getStaticProps(){
 
 let categories = await getData("categories")
 let posts = await  getData("posts")
-//let pages = await  getData("pages")
+let pages = await  getData("pages")
 //let users = await getData("users")
 //let tags = await getData("tags")
 
   return {props: {
     categories: categories,
    posts: posts,
-   //pages: pages,
+   pages: pages,
    //users: users, 
   }}
 }

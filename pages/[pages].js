@@ -19,12 +19,11 @@ export async function getStaticPaths() {
         return allElements;
         }
      
-        let posts = await  getData("posts")
+        let pages = await getData("pages")
 
 
 return {
-
-paths: posts.map((el)=>{
+  paths: pages.map((el)=>{
     return {
         params: {
             slug: el.slug,
@@ -34,7 +33,7 @@ fallback: false,
 }
 }
 
-export default function Post({post, categories}){
+export default function Page({page, pages, categories}){
     
     return( <>
     <Header current={"HOME"}/>
@@ -42,11 +41,11 @@ export default function Post({post, categories}){
     <div className="row">
     <div className="col-2">
   <Categories cats={categories}/>
-  <Pages pages={pages} />
+  <Pages pages={pages}/>
   </div>
   <div className="col-9 offset-1">
-  <div style={{margin: "1em",}}> <h1>{ReactHtmlParser(post.title.rendered)}</h1>
-       <p>{ReactHtmlParser(post.content.rendered)}</p>
+  <div style={{margin: "1em",}}> <h1>{ReactHtmlParser(page.title.rendered)}</h1>
+       <p>{ReactHtmlParser(page.content.rendered)}</p>
        </div>
   </div>
   </div>
@@ -71,17 +70,16 @@ export async function getStaticProps({params}){
      return allElements;
      }
   
-     let posts = await  getData("posts")
+    // let posts = await  getData("posts")
   let categories = await getData("categories")
-  let pages = await  getData("pages")
+  let pages = await getData("pages")
   //let users = await getData("users")
   //let tags = await getData("tags")
   
     return {props: {
       categories: categories,
-     posts: posts,
-     post: posts.find((el)=>el.slug == params.slug),
      pages: pages,
+     page: pages.find((el)=>el.slug == params.slug),
      //users: users, 
     }}
   }

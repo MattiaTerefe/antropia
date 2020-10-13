@@ -2,6 +2,7 @@ import Header from "../../public/components/header.js"
 import Postlist from "../../public/components/postlist.js"
 import {useState} from "react"
 import {Categories} from "../../public/components/categories.js"
+import {Pages} from "../../public/components/pages.js"
 
 export async function getStaticPaths() {
 
@@ -34,7 +35,7 @@ fallback: false,
 }
 }
 
-export default function Cat({posts, category, categories}){
+export default function Cat({posts, category, categories, pages}){
 
   const [Page, setPage] = useState(0)
       const next = () => {
@@ -57,6 +58,7 @@ export default function Cat({posts, category, categories}){
     <div className="row">
     <div className="col-2">
   <Categories cats={categories}/>
+  <Pages pages={pages}/>
   </div>
   <div className="col-9 offset-1">
   <Postlist posts={viewed} prev={prev} next={next}/>
@@ -85,7 +87,7 @@ export async function getStaticProps({params}){
   
      let posts = await  getData("posts")
   let categories = await getData("categories")
-  //let pages = await  getData("pages")
+  let pages = await getData("pages")
   //let users = await getData("users")
   //let tags = await getData("tags")
   
@@ -93,7 +95,7 @@ export async function getStaticProps({params}){
     categories: categories,
      posts: posts,
      category: categories.find((el)=>el.slug == params.cat),
-     //pages: pages,
+     pages: pages,
      //users: users, 
     }}
   }
