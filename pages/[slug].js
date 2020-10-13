@@ -34,7 +34,7 @@ fallback: false,
 }
 }
 
-export default function Post({post, categories}){
+export default function Post({post, categories, pages}){
     
     return( <>
     <Header current={"HOME"}/>
