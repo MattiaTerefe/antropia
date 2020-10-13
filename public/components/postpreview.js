@@ -1,4 +1,5 @@
-import ReactHtmlParser from "react-html-parser"
+import ReactHtmlParser from "react-html-parser";
+import Link from "next/link";
 
 export default function Postpreview (props)  {
 return (
@@ -7,7 +8,9 @@ return (
 
 <p>{ReactHtmlParser(props.estratto)}</p>
 
-<button onClick={()=>console.log(props.slug)}><a href={"/" + props.link}>LEGGI L'ARTICOLO</a></button>
+<Link href={ "/" + props.link}><a>
+<button className="btn btn-dark" onClick={()=>console.log(props.slug)}>LEGGI L'ARTICOLO</button>
+    </a></Link>
 <hr/>
 </>
 )
