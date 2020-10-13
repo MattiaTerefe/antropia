@@ -1,7 +1,7 @@
-import Header from "../public/components/header.js"
+import Header from "../../public/components/header.js"
 import ReactHtmlParser from "react-html-parser"
-import {Categories} from "../public/components/categories.js"
-import {Pages} from "../public/components/pages.js"
+import {Categories} from "../../public/components/categories.js"
+import {Pages} from "../../public/components/pages.js"
 
 export async function getStaticPaths() {
 
@@ -19,22 +19,22 @@ export async function getStaticPaths() {
         return allElements;
         }
      
-        let posts = await  getData("posts")
+        let pages = await  getData("pages")
 
 
 return {
 
-paths: posts.map((el)=>{
+paths: pages.map((el)=>{
     return {
         params: {
-            slug: el.slug,
+            page: el.slug,
         },
 }}),
 fallback: false,
 }
 }
 
-export default function Post({post, categories}){
+export default function Page({categories, pages, page}){
     
     return( <>
     <Header current={"HOME"}/>
@@ -45,8 +45,8 @@ export default function Post({post, categories}){
   <Pages pages={pages} />
   </div>
   <div className="col-9 offset-1">
-  <div style={{margin: "1em",}}> <h1>{ReactHtmlParser(post.title.rendered)}</h1>
-       <p>{ReactHtmlParser(post.content.rendered)}</p>
+  <div style={{margin: "1em",}}> <h1>{ReactHtmlParser(page.title.rendered)}</h1>
+       <p>{ReactHtmlParser(page.content.rendered)}</p>
        </div>
   </div>
   </div>
@@ -79,8 +79,7 @@ export async function getStaticProps({params}){
   
     return {props: {
       categories: categories,
-     posts: posts,
-     post: posts.find((el)=>el.slug == params.slug),
+     page: pages.find((el)=>el.slug == params.page),
      pages: pages,
      //users: users, 
     }}
