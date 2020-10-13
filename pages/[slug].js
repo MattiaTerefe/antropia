@@ -1,5 +1,6 @@
 import Header from "../public/components/header.js"
 import ReactHtmlParser from "react-html-parser"
+import {Categories} from "../public/components/categories.js"
 
 export async function getStaticPaths() {
 
@@ -35,11 +36,20 @@ fallback: false,
 export default function Post({post, categories}){
     
     return( <>
-    <Header cats={categories} current={post.title.rendered}/>
-      <div style={{margin: "3em",}}> <h1>{ReactHtmlParser(post.title.rendered)}</h1>
+    <Header current={"HOME"}/>
+  <div className="container">
+    <div className="row">
+    <div className="col-2">
+  <Categories cats={categories}/>
+  </div>
+  <div className="col-9 offset-1">
+  <div style={{margin: "1em",}}> <h1>{ReactHtmlParser(post.title.rendered)}</h1>
        <p>{ReactHtmlParser(post.content.rendered)}</p>
-       <button><a href="/">HOMEPAGE</a></button>
-       </div></>
+       </div>
+  </div>
+  </div>
+  </div>
+      </>
     )
 }
 

@@ -1,7 +1,7 @@
 import Header from "../public/components/header.js"
 import Postlist from "../public/components/postlist.js"
 import {useState} from "react"
-
+import {Categories} from "../public/components/categories.js"
 
 export default function Home({posts, categories}) {
   const [Page, setPage] = useState(0)
@@ -18,8 +18,18 @@ const prev = () => {
 
 let viewed = posts.slice(0 + 10 * Page, 10 + 10* Page)
   return (<>
-  <Header cats={categories} current={"HOME"}/>
-  <Postlist posts={viewed} prev={prev} next={next}/></>
+  <Header current={"HOME"}/>
+  <div className="container">
+    <div className="row">
+    <div className="col-2">
+  <Categories cats={categories}/>
+  </div>
+  <div className="col-9 offset-1">
+  <Postlist posts={viewed} prev={prev} next={next}/>
+  </div>
+  </div>
+  </div>
+  </>
 )
 
 }

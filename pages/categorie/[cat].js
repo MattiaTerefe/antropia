@@ -1,7 +1,7 @@
 import Header from "../../public/components/header.js"
-import ReactHtmlParser from "react-html-parser"
 import Postlist from "../../public/components/postlist.js"
 import {useState} from "react"
+import {Categories} from "../../public/components/categories.js"
 
 export async function getStaticPaths() {
 
@@ -50,10 +50,20 @@ export default function Cat({posts, category, categories}){
       let filtered = posts.filter((el)=>el.categories[0] == category.id)
       let viewed = filtered.slice(0 + 10 * Page, 10 + 10* Page)
     
-    return( <>
-    <Header cats={categories} current={category.name}/>
-  <Postlist posts={viewed} next={next} prev={prev} />
-       </>
+    return( 
+      <>
+  <Header current={"HOME"}/>
+  <div className="container">
+    <div className="row">
+    <div className="col-2">
+  <Categories cats={categories}/>
+  </div>
+  <div className="col-9 offset-1">
+  <Postlist posts={viewed} prev={prev} next={next}/>
+  </div>
+  </div>
+  </div>
+  </>
     )
 }
 
