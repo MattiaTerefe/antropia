@@ -37,7 +37,7 @@ fallback: false,
 export default function Post({post, categories, pages}){
     
     return( <>
-    <Header current={"HOME"}/>
+    <Header current={post.title.rendered}/>
   <div className="container">
     <div className="row">
     <div className="col-2">
