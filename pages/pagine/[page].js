@@ -37,7 +37,7 @@ fallback: false,
 export default function Page({categories, pages, page}){
     
     return( <>
-    <Header current={"HOME"}/>
+    <Header current={page.title.rendered}/>
   <div className="container">
     <div className="row">
     <div className="col-2">
