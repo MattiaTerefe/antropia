@@ -53,7 +53,7 @@ export default function Cat({posts, category, categories, pages}){
     
     return( 
       <>
-  <Header current={"HOME"}/>
+  <Header current={category.name}/>
   <div className="container">
     <div className="row">
     <div className="col-2">
